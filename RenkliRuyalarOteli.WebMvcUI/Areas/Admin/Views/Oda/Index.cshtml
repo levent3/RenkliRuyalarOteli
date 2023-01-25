@@ -1,0 +1,74 @@
+﻿@model List<Oda>
+<a asp-action="Create" asp-controller="Oda" class="btn btn-primary">Yeni Kayit</a>
+
+
+<div class="card">
+    <div class="card-header">
+        <h3>Odalar</h3>
+    </div>
+
+    <table class="table table-hover" id="myTable">
+
+        <thead>
+            <tr>
+
+
+                <td></td>
+                <td>Numara</td>
+                <td>Kisi sayısı</td>
+                <td>Müsaitlik</td>
+                <td>Tarih</td>
+
+                <td></td>
+                <td></td>
+
+            </tr>
+
+
+
+        </thead>
+        <tbody>
+            @foreach (Oda oda in Model)
+            {
+                if (oda.Durum == false)
+                {
+                    <tr class="bg-danger">
+
+                        <td><img src="@oda.ImageUrl" width="50" height="50"></td>
+
+                        <td>@oda.OdaNo</td>
+                        <td>@oda.KisiSayisi</td>
+                        <td>@oda.Durum</td>
+                        <td>@oda.CreateDate</td>
+
+                        <td><a asp-action="Update" asp-controller="Oda" class="btn btn-success" asp-route-Id="@oda.Id">Update</a> </td>
+                        <td><a asp-action="Delete" asp-controller="Oda" class="btn btn-dark" asp-route-Id="@oda.Id">Delete</a> </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="bg-primary">
+
+                        <td><img src="@oda.ImageUrl" width="50" height="50"></td>
+                        <td>@oda.OdaNo</td>
+                        <td>@oda.KisiSayisi</td>
+                        <td>@oda.Durum</td>
+                        <td>@oda.CreateDate</td>
+
+                        <td><a asp-action="Update" asp-controller="Oda" class="btn btn-success" asp-route-Id="@oda.Id">Update</a> </td>
+                        <td><a asp-action="Delete" asp-controller="Oda" class="btn btn-dark" asp-route-Id="@oda.Id">Delete</a> </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+    </script>
+}

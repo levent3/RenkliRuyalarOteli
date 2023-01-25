@@ -1,0 +1,46 @@
+﻿@model List<Rezervasyon>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Rezervasyonlar</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <td>Giriş Tarihi</td>
+                    <td>Çıkış Tarihi</td>
+                  @*  <td>Oda No</td>
+                    <td>Oda Fiyatı</td>*@
+                    <td></td>
+                  
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Rezervasyon rez in Model)
+                {
+                    <tr>
+                        <td>@rez.GirisTarihi</td>
+                        <td>@rez.CikisTarihi</td>
+                      @*  <td>@rez.Oda.OdaNo</td>
+                        <td>@rez.OdaFiyat.Fiyat</td>*@
+                 
+
+                        <td><a asp-action="Update" asp-controller="Rezervasyon" class="btn btn-success" asp-route-Id="@rez.Id">Update</a> </td>
+                        <td><a asp-action="Delete" asp-controller="Rezervasyon" class="btn btn-danger" asp-route-Id="@rez.Id">Delete</a> </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+
+        </script>
+}

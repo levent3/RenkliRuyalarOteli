@@ -1,0 +1,61 @@
+﻿@model RezervasyonCreateDTO
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h3>Rezervasyon  Ekleme</h3>
+        <div class="card-header">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" asp-controller="Rezervasyon" method="post" enctype="multipart/form-data">
+
+
+            <div class="input-group mb-3">
+                <input type="date" min="2020" asp-for="GirisTarihi" class="form-control" placeholder="Baslangic Tarihi">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope text-danger" asp-validation-for="GirisTarihi"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="date" min="2020" asp-for="CikisTarihi" class="form-control" placeholder="Bitis Tarihi">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope text-danger" asp-validation-for="CikisTarihi"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="input-group mb-3 demo-example">
+                    <label for="Role">Oda seç:</label>
+                    <select asp-for="Odalar" asp-items=@ViewBag.Odalar multiple>
+                    </select>
+                </div>
+                
+                <div class="input-group mb-3 demo-example">
+                    <label for="Role">Fiyat seç:</label>
+                    <select asp-for="Fiyatlar" asp-items=@ViewBag.Fiyatlar multiple>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+        </form>
+    </div>
+</div>
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/jquery.multi-select.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#Odalar').multiSelect();
+            $('#Fiyatlar').multiSelect();
+        });
+    </script>
+}
