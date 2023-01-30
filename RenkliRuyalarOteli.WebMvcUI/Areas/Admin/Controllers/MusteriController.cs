@@ -131,6 +131,27 @@ namespace RenkliRuyalarOteli.WebMvcUI.Areas.Admin.Controllers
 
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+
+            var result = await musteriManager.FindAsync(p => p.Id == id);
+            return View(result);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Musteri musteri)
+        {
+
+            var result = await musteriManager.FindAsync(p => p.Id == musteri.Id);
+            musteriManager.DeleteAsync(result);
+
+            return RedirectToAction("Index", "Musteri");
+        }
+
+
+
 
 
         #endregion
